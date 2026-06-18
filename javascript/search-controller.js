@@ -1,4 +1,4 @@
-import { getUser } from "./github-api.js";
+import { getUser, getRepos } from "./github-api.js";
 import { renderLoading } from "./loading.js";
 import { renderProfile } from "./profile.js";
 
@@ -23,8 +23,14 @@ async function handleSearch() {
     try {
 
         const user = await getUser(username);
+        const repos = await getRepos(username);
+        
+        
+        console.log(repos);
 
-        renderProfile(profileResults, user);
+
+
+        renderProfile(profileResults, repos, user);
 
     } catch (error) {
 
